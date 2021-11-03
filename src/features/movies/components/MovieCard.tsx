@@ -7,7 +7,7 @@ export const MovieInfoCard = () => {
     <Card elevation={5} style={styles.card}>
       <Card.Cover
         style={styles.cover}
-        source={{ uri: "https://picsum.photos/700" }}
+        source={{ uri: "https://picsum.photos/600" }}
       />
       <Card.Content style={styles.cardcontent}>
         <Title>Movie title</Title>
