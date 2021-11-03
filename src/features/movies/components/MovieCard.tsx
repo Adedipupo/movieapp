@@ -4,25 +4,29 @@ import { View, StyleSheet } from "react-native";
 
 export const MovieInfoCard = () => {
   return (
-    <View style={styles.container}>
-      <Card>
-        <Card.Content>
-          <Title>Card title</Title>
-          <Paragraph>Card content</Paragraph>
-        </Card.Content>
-        <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
-        <Card.Actions>
-          <Button>Cancel</Button>
-          <Button>Ok</Button>
-        </Card.Actions>
-      </Card>
-    </View>
+    <Card elevation={5} style={styles.card}>
+      <Card.Cover
+        style={styles.cover}
+        source={{ uri: "https://picsum.photos/700" }}
+      />
+      <Card.Content style={styles.cardcontent}>
+        <Title>Movie title</Title>
+        <Paragraph>By : Ooooqqq</Paragraph>
+      </Card.Content>
+    </Card>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10
+  card: {
+    marginTop: 15,
+    backgroundColor: '#fff'
+  },
+  cover: {
+    padding: 5,
+  },
+  cardcontent: {
+    marginTop: 5,
+    marginBottom: -5,
   },
 });
