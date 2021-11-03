@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { HomeScreen } from "./src/features/movies/screens/Homescreen";
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 
 
@@ -56,12 +57,13 @@ const createScreenOptions = ({ route }) => {
     ),
   };
 };
-
+const queryClient = new QueryClient();
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
         <StatusBar style="auto" />
         <NavigationContainer>
+        <QueryClientProvider client={queryClient}>
           <Tab.Navigator
             screenOptions={createScreenOptions}
             tabBarOptions={{
@@ -75,6 +77,7 @@ export default function App() {
             <Tab.Screen name="Favorites" component={FavoritesScreen} />
             <Tab.Screen name="User" component={UserScreen} />
           </Tab.Navigator>
+          </QueryClientProvider>
         </NavigationContainer>
     </SafeAreaView>
   );
