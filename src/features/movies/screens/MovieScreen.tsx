@@ -5,15 +5,11 @@ import useMovies from "../../../services/useMovies";
 
 
 
-
-const image = { uri: ""};
-
 export const MovieScreen = ({ route }) => {
   const { movie } = route.params;
 
   return (
     <ScrollView style={styles.container}>
-     <ImageBackground source={image} resizeMode="cover" style={styles.image1}>    
       <Card elevation={5}>
         <Image
           source={{
@@ -49,7 +45,6 @@ export const MovieScreen = ({ route }) => {
         <Text style={styles.title1}>{movie.popularity}</Text>
       </View>
       </View>
-     </ImageBackground>
     </ScrollView>
   );
 };

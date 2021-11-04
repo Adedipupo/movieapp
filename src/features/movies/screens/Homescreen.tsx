@@ -16,50 +16,36 @@ import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 import ImageCarousel from "../../../components/Carousel";
 import { MaterialIcons } from "@expo/vector-icons";
 
-const data: ImageCarouselItem[] = [
-  {
-    id: 0,
-    uri: "https://picsum.photos/200",
-    title: "Dahlia",
-  }, // https://unsplash.com/photos/Jup6QMQdLnM
-  {
-    id: 1,
-    uri: "https://picsum.photos/300",
-    title: "Sunflower",
-  }, // https://unsplash.com/photos/oO62CP-g1EA
-  {
-    id: 2,
-    uri: "https://picsum.photos/400",
-    title: "Zinnia",
-  }, // https://unsplash.com/photos/gKMmJEvcyA8
-  {
-    id: 3,
-    uri: "https://picsum.photos/500",
-    title: "Tulip",
-  }, // https://unsplash.com/photos/N7zBDF1r7PM
-  {
-    id: 4,
-    uri: "https://picsum.photos/600",
-    title: "Chrysanthemum",
-  }, // https://unsplash.com/photos/GsGZJMK0bJc
-  {
-    id: 5,
-    uri: "https://picsum.photos/700",
-    title: "Hydrangea",
-  }, // https://unsplash.com/photos/coIBOiWBPjk
-];
 
 export const HomeScreen = ({ navigation }) => {
   const { data, isLoading, isSuccess } = useMovies();
-  const [favouriteList,setFavoriteList] = useState([]);
+  const [favoriteList,setFavoriteList] = useState([]);
+
+  const onFavorite = movie => {
+    setFavoriteList([...favoriteList, movie]);
+  };
+
+  const onRemoveFavorite = movie => {
+    const filteredList = favoriteList.filter(
+      item => item.id !== movie.id
+    );
+    setFavoriteList(filteredList);
+  };
+
+  const ifExists = movie => {
+    if (favoriteList.filter(item => item.id === movie.id).length > 0) {
+      return true;
+    }
+    return false;
+  };
+
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.search}>
         <Searchbar placeholder="Search Movies" />
       </View>
-      {/* <View>
-            <ImageCarousel data={data} />
-        </View> */}
+
       <View>
         {isLoading && (
           <ActivityIndicator size={70} animating={true} color={Colors.red800} />
@@ -82,10 +68,10 @@ export const HomeScreen = ({ navigation }) => {
                     />
                       <TouchableOpacity
                       style={styles.icon}
-                      onPress={() => null}
+                      onPress={() => (ifExists(item) ? onRemoveFavorite(item) : onFavorite(item))}
                     >
                       <MaterialIcons
-                        name={'favorite-outline'}
+                         name={ifExists(item) ? 'favorite' : 'favorite-outline'}
                         size={32}
                         color={'red'}
                       />
