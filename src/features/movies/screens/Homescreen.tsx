@@ -9,7 +9,7 @@ import {
   StyleSheet,
 } from "react-native";
 import { Searchbar } from "react-native-paper";
-import useMovies from "../../../services/services";
+import useMovies from "../../../services/useMovies";
 import { MovieInfoCard } from "../components/MovieCard";
 import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 
@@ -36,7 +36,7 @@ export const HomeScreen = ({ navigation }) => {
               renderItem={({ item }) => (
                 <TouchableOpacity
                   onPress={() =>
-                    navigation.navigate("MovieDetails", { id: item.id })
+                    navigation.push("Movie", { movie: item.id })
                   }
                 >
                   <Card elevation={5} style={styles.card}>

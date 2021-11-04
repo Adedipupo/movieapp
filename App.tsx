@@ -7,6 +7,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { HomeScreen } from "./src/features/movies/screens/Homescreen";
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { Main } from "./src/features/navigation/Main";
 
 
 
@@ -71,11 +72,10 @@ export default function App() {
               inactiveTintColor: "gray",
             }}
           >
-            <Tab.Screen name="Home" component={HomeScreen} />
+            <Tab.Screen name="Home" component={Main} />
             <Tab.Screen name="Search" component={SearchScreen} />
             <Tab.Screen name="Bonus" component={BonusScreen} />
             <Tab.Screen name="Favorites" component={FavoritesScreen} />
-            <Tab.Screen name="User" component={UserScreen} />
           </Tab.Navigator>
           </QueryClientProvider>
         </NavigationContainer>
