@@ -9,7 +9,7 @@ const MainStack = createStackNavigator();
 
 export const Main = () => (
 	<MainStack.Navigator>
-		<MainStack.Screen name="Home" component={HomeScreen} />
-		<MainStack.Screen name="Movie" component={MovieScreen} />
+		<MainStack.Screen name="Main" component={HomeScreen} />
+		<MainStack.Screen  name="Movie" component={MovieScreen} />
 	</MainStack.Navigator>
 );

@@ -72,7 +72,7 @@ export default function App() {
               inactiveTintColor: "gray",
             }}
           >
-            <Tab.Screen name="Home" component={Main} />
+            <Tab.Screen options={{headerShown: false}} name="Home" component={Main} />
             <Tab.Screen name="Search" component={SearchScreen} />
             <Tab.Screen name="Bonus" component={BonusScreen} />
             <Tab.Screen name="Favorites" component={FavoritesScreen} />
