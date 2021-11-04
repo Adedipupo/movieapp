@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View ,Image} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
@@ -8,34 +8,18 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { HomeScreen } from "./src/features/movies/screens/Homescreen";
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Main } from "./src/features/navigation/Main";
+import { SearchScreen } from "./src/features/movies/screens/SearchScreen";
+import { FavoritesScreen } from "./src/features/movies/screens/FavoriteScreen";
 
 
-
-function FavoritesScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>favourites!</Text>
-    </View>
-  );
-}
 function BonusScreen() {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Bonus!</Text>
-    </View>
-  );
-}
-function SearchScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Search!</Text>
-    </View>
-  );
-}
-function UserScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>User!</Text>
+      <Text style={{fontSize:20,color:'tomato'}}>Bonus Coming soon!</Text>
+      <Image 
+        source={{uri: 'http://www.clicktorelease.com/code/gif/1.gif'}}  
+        style={{width: 100, height:100 }} 
+    />
     </View>
   );
 }

@@ -1,5 +1,4 @@
 import React,{ useState} from "react";
-import { StatusBar } from "expo-status-bar";
 import {
   FlatList,
   View,
@@ -11,13 +10,13 @@ import {
 } from "react-native";
 import { Searchbar, ActivityIndicator, Colors } from "react-native-paper";
 import useMovies from "../../../services/useMovies";
-import { MovieInfoCard } from "../components/MovieCard";
-import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
-import ImageCarousel from "../../../components/Carousel";
+import { Card, Title, Paragraph } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 
 export const HomeScreen = ({ navigation }) => {
+
   const { data, isLoading, isSuccess } = useMovies();
   const [favoriteList,setFavoriteList] = useState([]);
 
