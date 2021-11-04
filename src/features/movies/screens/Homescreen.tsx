@@ -1,5 +1,5 @@
+import React,{ useState} from "react";
 import { StatusBar } from "expo-status-bar";
-import React, { useRef } from "react";
 import {
   FlatList,
   View,
@@ -7,13 +7,14 @@ import {
   SafeAreaView,
   TouchableOpacity,
   StyleSheet,
-  Animated,
+  Image
 } from "react-native";
 import { Searchbar, ActivityIndicator, Colors } from "react-native-paper";
 import useMovies from "../../../services/useMovies";
 import { MovieInfoCard } from "../components/MovieCard";
 import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 import ImageCarousel from "../../../components/Carousel";
+import { MaterialIcons } from "@expo/vector-icons";
 
 const data: ImageCarouselItem[] = [
   {
@@ -48,10 +49,9 @@ const data: ImageCarouselItem[] = [
   }, // https://unsplash.com/photos/coIBOiWBPjk
 ];
 
-const LeftContent = (props) => <Avatar.Icon {...props} icon="heart" />;
 export const HomeScreen = ({ navigation }) => {
-
   const { data, isLoading, isSuccess } = useMovies();
+  const [favouriteList,setFavoriteList] = useState([]);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.search}>
@@ -71,28 +71,31 @@ export const HomeScreen = ({ navigation }) => {
               data={data?.results}
               keyExtractor={(item) => `${item.id}`}
               renderItem={({ item }) => (
-                <TouchableOpacity
-                  onPress={() => navigation.push("Movie", { movie: item })}
-                >
                   <Card elevation={5} style={styles.card}>
-                    <Card.Cover
-                      style={styles.cover}
-                      source={{
-                        uri: `https://image.tmdb.org/t/p/w500/${item.poster_path}`,
-                      }}
+                      <TouchableOpacity
+                        onPress={() => navigation.push("Movie", { movie: item })}
+                      >
+                      <Image
+                      source={{ uri: `https://image.tmdb.org/t/p/w500/${item.poster_path}`}}
+                      style={styles.image}
+                      resizeMode='cover'
                     />
-                    <Card.Content style={styles.cardcontent}>
-                      <Card.Title
-                        onPress={() => {
-                          null;
-                        }}
-                        title={item.title}
-                        subtitle={item.release_date}
-                        right={LeftContent}
+                      <TouchableOpacity
+                      style={styles.icon}
+                      onPress={() => null}
+                    >
+                      <MaterialIcons
+                        name={'favorite-outline'}
+                        size={32}
+                        color={'red'}
                       />
+                    </TouchableOpacity>
+                    <Card.Content style={styles.cardcontent}>
+                      <Title>{item.title}</Title>
+                      <Paragraph>{item.release_date}</Paragraph>
                     </Card.Content>
-                  </Card>
                 </TouchableOpacity>
+                  </Card>
               )}
             />
           </>
@@ -110,7 +113,16 @@ const styles = StyleSheet.create({
   cover: {
     padding: 5,
   },
+  image: {
+    width: '100%',
+    height: 200,
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+    opacity: 0.8
+  },
   cardcontent: {
+      flex: 1,
+    padding: 10,
     marginTop: 5,
     marginBottom: -5,
   },
@@ -121,4 +133,9 @@ const styles = StyleSheet.create({
   search: {
     padding: 10,
   },
+  icon: {
+    position: 'absolute',
+    top: 10,
+    right: 10
+  }
 });
