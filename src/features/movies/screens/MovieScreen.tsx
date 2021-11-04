@@ -5,28 +5,25 @@ import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 import useMovies from "../../../services/useMovies";
 
 export const MovieScreen = ({ route }) => {
-  const { movie } = route && route.params;
-  const { data, isSuccess, isLoading } = useMovies(movie.id);
+   const { movie } = route.params;
 
   return (
     <ScrollView style={styles.container}>
-      <Text>{movie.title}</Text>
-
-      {isLoading && <Text style={{ textAlign: "center" }}>Loading...</Text>}
-
-      {isSuccess && (
-        <>
           <Card elevation={5}>
             <Card.Cover
-              source={{ uri: "https://picsum.photos/600" }}
+               source={{
+                uri: `https://image.tmdb.org/t/p/w500/${movie.poster_path}`,
+              }}
             />
             <Card.Content>
-              <Title>Movie title</Title>
-              <Paragraph>By : Ooooqqq</Paragraph>
+              <Title style={styles.movieTitle}>{movie.title}</Title>
+              <Paragraph style={styles.para}>{movie.release_date}</Paragraph>
             </Card.Content>
           </Card>
-        </>
-      )}
+          <View>
+            <Text style={styles.titleOne}>Overview</Text>
+            <Text style={styles.title}>{movie.overview}</Text>
+          </View>
     </ScrollView>
   );
 };
@@ -35,5 +32,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 30,
-  },
+},
+movieTitle: {
+    marginTop: 20,
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "tomato"
+},
+titleOne: {
+    marginTop: 20,
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "tomato"
+},
+title: {
+    marginTop: 20,
+    fontSize: 16
+}
 });

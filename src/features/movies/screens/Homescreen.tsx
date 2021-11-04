@@ -36,7 +36,7 @@ export const HomeScreen = ({ navigation }) => {
               renderItem={({ item }) => (
                 <TouchableOpacity
                   onPress={() =>
-                    navigation.push("Movie", { movie: item.id })
+                    navigation.push("Movie", { movie: item })
                   }
                 >
                   <Card elevation={5} style={styles.card}>
