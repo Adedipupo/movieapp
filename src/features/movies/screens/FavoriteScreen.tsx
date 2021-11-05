@@ -1,9 +1,10 @@
-import React from "react";
-import { View, Text, FlatList, Image, StyleSheet } from "react-native";
+import React,{useState,useEffect} from "react";
+import { View, Text, FlatList, Image, StyleSheet,TouchableOpacity } from "react-native";
 import { Card, Title, Paragraph } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export function FavoritesScreen() {
+export const FavoritesScreen = ({navigation}) => {
+    const [likes,setLikes] = useState([]);
   const getData = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem("movies");
@@ -13,22 +14,27 @@ export function FavoritesScreen() {
     }
   };
 
-  (async () => {
-    const resp = await getData();
-    console.log(resp);
-  })();
+
+ useEffect( () => {
+    (async () =>{const resp = await getData();
+    setLikes(resp)})()
+ }, [])
+  
 
   return (
     <View style={{ flex: 1 }}>
-      <Text>favourites!</Text>
+      <Text style={{ padding:10,color:'tomato',marginTop:5,marginBottom:5,fontSize:20}}>See your favourites movies!</Text>
 
       <View>
         <FlatList
-          data={data}
+          data={likes}
           numColumns={2}
           keyExtractor={(item) => `${item.id}`}
           renderItem={({ item }) => (
             <Card elevation={5} style={styles.card}>
+            <TouchableOpacity
+                    onPress={() => navigation.push("Movie", { movie: item })}
+                  >    
               <Image
                 source={{
                   uri: `https://image.tmdb.org/t/p/w500/${item.poster_path}`,
@@ -40,6 +46,7 @@ export function FavoritesScreen() {
                 <Title>{item.title}</Title>
                 <Paragraph>{item.release_date}</Paragraph>
               </Card.Content>
+            </TouchableOpacity>  
             </Card>
           )}
         />
@@ -64,6 +71,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     overflow: 'hidden',
     borderWidth: 5,
+  },
+  cardcontent: {
+    flex: 1,
+    padding: 10,
+    marginTop: 5,
+    marginBottom: -5,
   },
   image: {
     width: "100%",

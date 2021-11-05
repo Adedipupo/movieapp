@@ -16,7 +16,7 @@ export function SearchScreen() {
       />
 
       <View>
-        <CarouselCards />
+        {/* <CarouselCards /> */}
       </View>
     </View>
   );
