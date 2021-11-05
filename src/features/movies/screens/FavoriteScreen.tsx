@@ -1,41 +1,13 @@
-import { useRoute } from "@react-navigation/native";
 import React from "react";
 import { View, Text, FlatList, Image, StyleSheet } from "react-native";
 
 export function FavoritesScreen() {
-  const route = useRoute();
-  const { favoriteList } = route.params;
+ 
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>favourites!</Text>
 
-      <FlatList
-        data={favoriteList}
-        renderItem={({ item }) => {
-          return (
-            <View style={styles.listContainer}>
-              <View>
-                <Image
-                  source={{ uri: item["image"] }}
-                  style={styles.image}
-                  resizeMode="cover"
-                />
-              </View>
-              <View style={styles.listContainer}>
-                <View style={styles.row}>
-                  <Text
-                    style={styles.text}
-                    allowFontScaling={true}
-                    numberOfLines={1}
-                  >
-                    {item && item["name"]}
-                  </Text>
-                </View>
-              </View>
-            </View>
-          );
-        }}
-      />
+      
     </View>
   );
 }
@@ -54,11 +26,6 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
     opacity: 0.7,
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: "bold",
-    fontColor: "#010101",
   },
   row: {
     flexDirection: "row",

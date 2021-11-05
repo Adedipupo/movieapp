@@ -20,18 +20,18 @@ export const HomeScreen = ({ navigation }) => {
   const { data, isLoading, isSuccess } = useMovies();
   const [favoriteList,setFavoriteList] = useState([]);
 
-  const onFavorite = movie => {
+  const onFavorite = (movie) => {
     setFavoriteList([...favoriteList, movie]);
   };
 
-  const onRemoveFavorite = movie => {
+  const onRemoveFavorite = (movie) => {
     const filteredList = favoriteList.filter(
       item => item.id !== movie.id
     );
     setFavoriteList(filteredList);
   };
 
-  const ifExists = movie => {
+  const ifExists = (movie) => {
     if (favoriteList.filter(item => item.id === movie.id).length > 0) {
       return true;
     }

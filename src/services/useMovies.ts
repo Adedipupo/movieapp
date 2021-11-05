@@ -11,3 +11,5 @@ const getMovies = async () => {
 
 const useMovies = () => useQuery("movies", getMovies);
 export default useMovies;
+
+
