@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     marginTop: 10,  
     width: "100%",
     height: 200,
+    position: "relative",
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
     opacity: 0.8,
