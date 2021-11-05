@@ -12,7 +12,8 @@ import { Searchbar, ActivityIndicator, Colors } from "react-native-paper";
 import useMovies from "../../../services/useMovies";
 import { Card, Title, Paragraph } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
-import { useNavigation, useRoute } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 
 export const HomeScreen = ({ navigation }) => {
